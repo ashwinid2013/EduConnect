@@ -10,6 +10,7 @@ import LogoutComp from './components/LogoutComp';
 import AddUser2 from './components/Adduser2';
 import ContactUs from './components/ContactUS';
 import AddSubject from './components/AddSubject';
+import UpdateUser from './components/UpdateUser';
 
 function App() {
   const mystate = useSelector((state) => state.logged);
@@ -43,13 +44,19 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomeComponent />} />
+
         <Route path="/login" element={<LoginComponent />} />
+
         <Route path="/Admin_home" element={<AdminComponent />}>
           <Route path="AddUser" element={<AddUser2 />} />
           <Route path="AddSubject"element={<AddSubject/>}/>
+          <Route path="UpdateUser" element={<UpdateUser/>}/>
         </Route>
+
         <Route path="/Teacher_home" element={<TeacherComponent />} />
+
         <Route path="/Parent_home" element={<ParentComponent />} />
+        
         <Route path="/logout" element={<LogoutComp />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
