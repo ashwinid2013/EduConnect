@@ -41,7 +41,7 @@ function AdminComponent() {
                   <NavLink to="AssignSubjectToTeacher" className="nav-link px-3" end>Assign Subject To Teacher</NavLink>
                 </li>
                 <li className='nav-item'>
-                  <NavLink to="AssignSubjectToTeacher" className="nav-link px-3" end>Update User</NavLink>
+                  <NavLink to="UpdateUser" className="nav-link px-3" end>Update User</NavLink>
                 </li>
                 <li className='nav-item'>
                   <NavLink to="/logout" className="nav-link px-3" end>Logout</NavLink>
