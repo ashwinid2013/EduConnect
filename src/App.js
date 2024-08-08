@@ -15,7 +15,7 @@ import UpdateUser from './components/UpdateUser';
 function App() {
   const mystate = useSelector((state) => state.logged);
          
- 
+    console.log(mystate);
 
   return (
     <div className="App">
