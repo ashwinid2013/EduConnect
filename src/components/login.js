@@ -6,6 +6,7 @@ import { login } from "./slice";
 function LoginComponent() {
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const reduxAction = useDispatch();
 
@@ -84,6 +85,10 @@ function LoginComponent() {
       .catch(err => setError("Login Failed. Try Again" || err.toString()));
   };
 
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div>
       <h1>Login Form</h1>
@@ -103,14 +108,21 @@ function LoginComponent() {
         <div className="mb-3">
           <label htmlFor="pwd" className="form-label">Password: </label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             className="form-control"
             name='pwd'
             id="pwd"
             value={info.password}
             onChange={(e) => { dispatch({ type: 'update', field: 'password', val: e.target.value }) }}
-          />
-        </div>
+          /><input
+              className="form-check-input"
+              type="checkbox"
+              id="show-password"
+              checked={showPassword}
+              onChange={toggleShowPassword}
+            /><span className="form-check-label" htmlFor="show-password">Show Password</span>
+          </div>
+        
 
         <button type='submit' className="btn btn-primary btn-spacing " onClick={sendData}>Login</button>
         <button type='reset' className="btn btn-secondary " onClick={() => { dispatch({ type: 'reset' }) }}>Clear</button>
