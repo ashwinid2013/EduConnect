@@ -36,7 +36,7 @@ function AdminComponent() {
                 </li>
 
                 <li className='nav-item'>
-                  <NavLink to="AssignParentToStudent" className="nav-link px-3" end>Assign Parent <br/>to Student</NavLink>
+                  <NavLink to="AssignParent" className="nav-link px-3" end>Assign Parent</NavLink>
                 </li>
 
                 <li className='nav-item'>
@@ -44,16 +44,11 @@ function AdminComponent() {
                 </li>
 
                 <li className='nav-item'>
-                  <NavLink to="AddStandard" className="nav-link px-3" end>Add Standard</NavLink>
-                </li>
-
-
-                <li className='nav-item'>
-                  <NavLink to="AssignStandardtoStudent" className="nav-link px-3" end>Assign Standard to Student</NavLink>
+                  <NavLink to="AssignStudent" className="nav-link px-3" end>Assign Student</NavLink>
                 </li>
 
                 <li className='nav-item'>
-                  <NavLink to="AssignSubjectToStandardWithTeacher" className="nav-link px-3" end>Assign Subject To <br/>Standard with Teacher</NavLink>
+                  <NavLink to="AssignTeacher" className="nav-link px-3" end>Assign Teacher</NavLink>
                 </li>
                 <li className='nav-item'>
                   <NavLink to="UpdateUser" className="nav-link px-3" end>Update User</NavLink>
