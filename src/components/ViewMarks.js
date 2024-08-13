@@ -1,0 +1,47 @@
+import { Link, Outlet } from "react-router-dom";
+function ViewMarksComponent(){
+   // const profile = JSON.parse(localStorage.getItem("loggedUser"));
+    return(
+      <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <div className="card shadow-lg">
+            <div className="card-body p-4">
+              
+            <div className="mb-4">
+                <label htmlFor="studentSelect" className="form-label">
+                  Select Student
+                </label>
+                <select id="studentSelect" className="form-select">
+                  <option>Select Student</option>
+                  <option value="s1">Student 1</option>
+                  <option value="s2">Student 2</option>
+                </select>
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="subjectTest" className="form-label">
+                  Select Test Type
+                </label>
+                <select id="TestSelect" className="form-select">
+                  <option>Select Test</option>
+                  <option value="t1">Unit Test-I</option>
+                  <option value="t2">Semester End-I</option>
+                  <option value="t3">Unit Test-II</option>
+                  <option value="t4">Semester End-II</option>
+                </select>
+              </div>
+    
+              <div className="d-grid">
+                <button type="button" className="btn btn-primary btn-lg">
+                  View Marks
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    )
+}
+export default ViewMarksComponent;
