@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Zn8my83XxnIqBCR03FNWYw8sDEfIop5TSc/YEOmRcGY=",
+  "Source": "EduConnectRestApi",
+  "BasePath": "_content/EduConnectRestApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
