@@ -11,6 +11,8 @@ import AddUser2 from './components/Adduser2';
 import ContactUs from './components/ContactUS';
 import AddSubject from './components/AddSubject';
 import UpdateUser from './components/UpdateUser';
+import AssignParent from './components/AssignParent';
+import AssignStudent from './components/AssignStudent';
 
 function App() {
   const mystate = useSelector((state) => state.logged);
@@ -51,6 +53,8 @@ function App() {
           <Route path="AddUser" element={<AddUser2 />} />
           <Route path="AddSubject"element={<AddSubject/>}/>
           <Route path="UpdateUser" element={<UpdateUser/>}/>
+          <Route path="AssignParent" element={<AssignParent/>} />
+          <Route path="AssignStudent" element={<AssignStudent/>}/>
         </Route>
 
         <Route path="/Teacher_home" element={<TeacherComponent />} />
