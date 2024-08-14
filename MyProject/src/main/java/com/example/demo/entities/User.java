@@ -32,6 +32,7 @@ public class User {
 	@JoinColumn(name="rid")
 	Role rid;
 	@OneToOne
+	@JoinColumn(name="areaid")
 	Area areaid;
 	boolean status;
 	

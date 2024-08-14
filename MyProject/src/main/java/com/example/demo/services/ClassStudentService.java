@@ -16,4 +16,8 @@ public class ClassStudentService {
 	{
 		return csrepo.save(s);
 	}
+	 public ClassStudent getStudent(int id)
+	 {
+		 return csrepo.getStudent(id);
+	 }
 }

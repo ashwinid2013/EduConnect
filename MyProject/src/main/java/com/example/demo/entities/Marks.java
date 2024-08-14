@@ -19,7 +19,7 @@ public class Marks {
 	int mark_id;
 	
 	@ManyToOne
-	@JoinColumn(name="sid")
+	@JoinColumn(name="stud_id")
 	Student stud_id;
 	
 	@ManyToOne
@@ -31,7 +31,7 @@ public class Marks {
 	AcademicYear yid;
 	
 	@ManyToOne
-	@JoinColumn(name="uid")
+	@JoinColumn(name="tid")
 	User tid;
 	
     String comment;

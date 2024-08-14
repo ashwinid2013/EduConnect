@@ -32,4 +32,8 @@ public class StudentService {
     {
     	return srepo.save(s);
     }
+    public List<Student> getStudentsByParent(int pid)
+    {
+    	return srepo.getStudentsByParent(pid);
+    }
 }

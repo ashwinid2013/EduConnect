@@ -26,11 +26,24 @@ public class StudentController {
 	public List<Student> getStudents() {
 		return studservice.getStudents();
 	}
+	
+	@GetMapping("/getStudentById/{sid}")
+	public Student getStudentById(@PathVariable int sid) {
+		return studservice.getStudent(sid);
+	}
+	
 
 	@PutMapping("/assignParent/{sid}")
 	public Student assignParent(@RequestBody User u, @PathVariable int sid) {
 		Student s = studservice.getStudent(sid);
 		s.setPid(u);
 		return studservice.assignParent(s);
+	}
+	 
+	@GetMapping("/getStudentsByParents/{pid}")
+	public List<Student> getStudentsByParents(@PathVariable int pid)
+	{
+		return studservice.getStudentsByParent(pid);
+	
 	}
 }
