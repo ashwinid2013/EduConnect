@@ -15,6 +15,7 @@ import AssignParent from './components/AssignParent';
 import AssignStudent from './components/AssignStudent';
 import ViewChildComponent from './components/ViewChild';
 import AssignTeacher from './components/AssignTeacher';
+import ViewTeachersComponent from './components/ViewTeachers';
 
 function App() {
   const mystate = useSelector((state) => state.logged);
@@ -64,6 +65,7 @@ function App() {
 
         <Route path="/Parent_home" element={<ParentComponent />} >
           <Route path="viewChild" element={<ViewChildComponent/>}/>
+          <Route path="viewTeachers" element={<ViewTeachersComponent/>}/>
         </Route>
         
         <Route path="/logout" element={<LogoutComp />} />

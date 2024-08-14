@@ -16,11 +16,11 @@ function TeacherComponent(){
                         </li>
                     
                         <li className='nav-item'>
-                            <NavLink to="AddAssignment" className='"nav-link px-3'>Add Assignment</NavLink>
+                            <NavLink to="AddAssignment" className='"nav-link px-3'>Add Homework</NavLink>
                         </li>
 
                         <li className='nav-item'>
-                            <NavLink to="ViewStudentDetails" className='"nav-link px-3'>View Student</NavLink>
+                            <NavLink to="ViewStudentDetails" className='"nav-link px-3'>View Students</NavLink>
                         </li>
 
                         <li className='nav-item'>
