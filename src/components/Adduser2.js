@@ -37,7 +37,8 @@ const AddUser2 = () => {
             const response = await fetch('https://localhost:7028/api/UserManagement/GetRoles');
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
-            setRoles(data);
+            const fdata = data.filter(role=>role.roleName !== 'Admin')
+            setRoles(fdata);
         } catch (error) {
             console.error('Error fetching roles:', error);
         }
