@@ -18,18 +18,7 @@ function ViewTeachersComponent(){
                   <option value="s2">Student 2</option>
                 </select>
               </div>
-              <div className="mb-4">
-                <label htmlFor="subjectSelect" className="form-label">
-                  Select Subject
-                </label>
-                <select id="subjectSelect" className="form-select">
-                  <option>Select Subject</option>
-                  <option value="t1">Subject 1</option>
-                  <option value="t2">Subject 2</option>
-                  <option value="t3">Subject 3</option>
-                  <option value="t4">Subject 4</option>
-                </select>
-              </div>
+              
               <div className="text-center">
                 <input
                   type="button"
