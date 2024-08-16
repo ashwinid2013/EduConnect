@@ -17,4 +17,5 @@ public class SubTeacherService {
 	 {
 		return strepo.save(st);
 	 }
+	 
 }

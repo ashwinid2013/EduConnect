@@ -9,7 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-/*@Entity
+@Entity
 @Table(name="marks")
 public class Marks {
 
@@ -34,15 +34,34 @@ public class Marks {
 	@JoinColumn(name="tid")
 	User tid;
 	
+	@ManyToOne
+    @JoinColumn(name = "type_id")
+	ExamType type_id;
+	
     String comment;
 	
-	float total;
+	float obtainedmarks;
 	
-	float percentage;
+	public Marks() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
-	String grade;
 	
-	ExamType type_id;
+
+	public Marks(Student stud_id, Subject sub_id, AcademicYear yid, User tid, ExamType type_id, String comment,
+			float obtainedmarks) {
+		super();
+		this.stud_id = stud_id;
+		this.sub_id = sub_id;
+		this.yid = yid;
+		this.tid = tid;
+		this.type_id = type_id;
+		this.comment = comment;
+		this.obtainedmarks = obtainedmarks;
+	}
+
+
 
 	public int getMark_id() {
 		return mark_id;
@@ -92,30 +111,7 @@ public class Marks {
 		this.comment = comment;
 	}
 
-	public float getTotal() {
-		return total;
-	}
-
-	public void setTotal(float total) {
-		this.total = total;
-	}
-
-	public float getPercentage() {
-		return percentage;
-	}
-
-	public void setPercentage(float percentage) {
-		this.percentage = percentage;
-	}
-
-	public String getGrade() {
-		return grade;
-	}
-
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-
+	
 	public ExamType getType_id() {
 		return type_id;
 	}
@@ -123,5 +119,13 @@ public class Marks {
 	public void setType_id(ExamType type_id) {
 		this.type_id = type_id;
 	}
+
+	public float getObtainedmarks() {
+		return obtainedmarks;
+	}
+
+	public void setObtainedmarks(float obtainedmarks) {
+		this.obtainedmarks = obtainedmarks;
+	}
 	
-}*/
+}

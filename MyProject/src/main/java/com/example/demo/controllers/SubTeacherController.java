@@ -46,4 +46,6 @@ public class SubTeacherController {
 		SubTeacher subteach=new SubTeacher(stdard,subject,teach,yr);
 		return stservice.save(subteach);
 	}
+	
+	
 }

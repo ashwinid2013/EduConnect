@@ -13,4 +13,5 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
 	@Query("select s from Student s where s.pid.uid = :pid")
 	public List<Student> getStudentsByParent(int pid);
+	
 }
