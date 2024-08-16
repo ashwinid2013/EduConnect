@@ -16,6 +16,8 @@ import AssignStudent from './components/AssignStudent';
 import ViewChildComponent from './components/ViewChild';
 import AssignTeacher from './components/AssignTeacher';
 import ViewTeachersComponent from './components/ViewTeachers';
+import UploadHomework from './components/UploadHomeWork';
+import ViewHomeworkComponent from './components/ViewHomework';
 
 function App() {
   const mystate = useSelector((state) => state.logged);
@@ -24,27 +26,27 @@ function App() {
 
   return (
     <div className="App">
-      <header className="app-header bg-primary text-white p-3 d-flex justify-content-between align-items-center">
+       <header className="app-header bg-primary text-white p-3 d-flex justify-content-between align-items-center">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1gwaIP7z8rY_XxsMkCd991jeKdmDJmPJ2cq2MvAa40jGQH-CZDBUwfKvffPVJYIXlO0o&usqp=CAU" width={100} height={100} alt='logo' />
         {!mystate.loggedIn && (
           <nav className='d-flex'>
             <ul className='navbar-nav flex-row'>
               
               <li className='nav-item'>
-                <NavLink to="/" className="nav-link px-3" activeClassName="active">Home</NavLink>
+                <NavLink to="/" className="nav-link px-3" activeclassname="active">Home</NavLink>
               </li>
               
               <li className='nav-item'>
-                <NavLink to="/contact" className="nav-link px-3" activeClassName="active">Contact Us</NavLink>
+                <NavLink to="/contact" className="nav-link px-3" activeclassname="active">Contact Us</NavLink>
               </li>
 
               <li className='nav-item'>
-                <NavLink to="/login" className="nav-link px-3" activeClassName="active">Login</NavLink>
+                <NavLink to="/login" className="nav-link px-3" activeclassname="active">Login</NavLink>
               </li>
             </ul>
           </nav>
         )}
-      </header>
+      </header> 
      
 
       <Routes>
@@ -61,16 +63,22 @@ function App() {
           <Route  path="AssignTeacher" element={<AssignTeacher/>}/>
         </Route>
 
-        <Route path="/Teacher_home" element={<TeacherComponent />} />
+        <Route path="/Teacher_home" element={<TeacherComponent />} >
+        <Route path="AddHomework" element={<UploadHomework/>}/>
+        </Route>
 
         <Route path="/Parent_home" element={<ParentComponent />} >
           <Route path="viewChild" element={<ViewChildComponent/>}/>
           <Route path="viewTeachers" element={<ViewTeachersComponent/>}/>
+          <Route path="viewHomework" element={<ViewHomeworkComponent/>}/>
+
         </Route>
         
         <Route path="/logout" element={<LogoutComp />} />
         <Route path="/contact" element={<ContactUs />} />
-      </Routes>
+      </Routes> 
+          
+      
     </div>
   );
 }
