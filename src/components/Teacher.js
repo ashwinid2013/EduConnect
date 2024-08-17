@@ -44,9 +44,6 @@ function TeacherComponent() {
               <NavLink to="AddHomework" className='"nav-link px-3'>Add Homework</NavLink>
             </li>
 
-            {/* <li className='nav-item'>
-              <NavLink to="ViewStudentDetails" className='"nav-link px-3'>View Students</NavLink>
-            </li> */}
 
             <li className='nav-item'>
               <NavLink to="ViewMarksByTeacher" className='"nav-link px-3'>View Marks</NavLink>
