@@ -20,6 +20,8 @@ import UploadHomework from './components/UploadHomeWork';
 import ViewHomeworkComponent from './components/ViewHomework';
 import AddMarks from './components/AddMarks';
 import ViewMarksParentComponent from './components/ViewMarksParent';
+import ViewAssignedClasses from './components/ViewAssignClasses';
+import ViewMarksTeacher from './components/ViewMarksTeacher';
 
 function App() {
   const mystate = useSelector((state) => state.logged);
@@ -68,16 +70,15 @@ function App() {
         <Route path="/Teacher_home" element={<TeacherComponent />} >
           <Route path="AddHomework" element={<UploadHomework />} />
           <Route path="addMarks" element={<AddMarks />} />
+          <Route path="ViewAssignedClasses" element={<ViewAssignedClasses />} />
+          <Route path="ViewMarksByTeacher" element={<ViewMarksTeacher />} />
         </Route>
 
         <Route path="/Parent_home" element={<ParentComponent />} >
           <Route path="viewChild" element={<ViewChildComponent />} />
           <Route path="viewTeachers" element={<ViewTeachersComponent />} />
           <Route path="viewHomework" element={<ViewHomeworkComponent />} />
-          <Route path="viewChildMarks" element={<ViewMarksParentComponent/>} />
-
-          
-
+          <Route path="viewChildMarks" element={<ViewMarksParentComponent />} />
 
 
         </Route>
