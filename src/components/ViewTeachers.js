@@ -7,11 +7,10 @@ function ViewTeachersComponent() {
   const [students, setStudents] = useState([]);
   const [selectedStudentId, setSelectedStudentId] = useState(null);
   const [studentDetails, setStudentDetails] = useState(null);
-  const [classDetails, setclassData] = useState();
-  const [classteachers, setclassTeachers] = useState([]); // State to hold the teachers data
-  console.log(JSON.stringify(classDetails));
-  //console.log(classDetails.std_id);
-  console.log(JSON.stringify(classteachers));
+  const [classDetails, setClassData] = useState(null);
+  const [classTeachers, setClassTeachers] = useState([]);
+  const [error, setError] = useState(null);
+
   // Fetch students from the API
   useEffect(() => {
     if (parentid) {
@@ -43,36 +42,52 @@ function ViewTeachersComponent() {
         })
         .then((response) => response.json())
         .then((data) => {
-          setclassData(data);
+          setClassData(data);
         })
         .catch((error) => {
           console.error("Error fetching additional data:", error);
-          setclassData(null);
+          setClassData(null);
         });
     }
   }, [selectedStudentId]);
 
   // Fetch teachers based on student ID and class ID
   const handleViewTeachers = () => {
-    const std = classDetails.std_id;
-    console.log(std);
-    if (std) {
-      fetch(`http://localhost:8080/getClassTeachersByStandard/${std}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setclassTeachers(data);
-        })
-        .catch((error) => {
-          console.error("Error fetching teachers:", error);
-          setclassTeachers([]);
-        });
+    if (!selectedStudentId) {
+      setError("Please select a student first.");
+      return;
     }
+
+    if (!classDetails || !classDetails.std_id) {
+      setError("Class details are not available for the selected student.");
+      return;
+    }
+
+    setError(null);
+    const std = classDetails.std_id;
+    fetch(`http://localhost:8080/getClassTeachersByStandard/${std}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setClassTeachers(data);
+        } else {
+          setClassTeachers([]);
+          setError("No teachers found for the selected class.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching teachers:", error);
+        setClassTeachers([]);
+        setError("Error fetching teachers. Please try again later.");
+      });
   };
 
   // Handle select change
   const handleSelectChange = (e) => {
     const selectedId = parseInt(e.target.value, 10);
     setSelectedStudentId(selectedId);
+    setClassTeachers([]); // Clear previous teachers list
+    setError(null); // Clear previous errors
   };
 
   return (
@@ -86,14 +101,15 @@ function ViewTeachersComponent() {
                 <select
                   className="form-select form-select-lg"
                   style={{
-                    fontFamily: 'Arial, sans-serif',
-                    fontSize: '16px',
-                    color: '#333',
-                    backgroundColor: '#f5f5f5',
+                    fontFamily: "Arial, sans-serif",
+                    fontSize: "16px",
+                    color: "#333",
+                    backgroundColor: "#f5f5f5",
                   }}
                   onChange={handleSelectChange}
+                  value={selectedStudentId || ""}
                 >
-                  <option>Select Student</option>
+                  <option value="">Select Student</option>
                   {students.length > 0 ? (
                     students.map((student) => (
                       <option key={student.sid} value={student.sid}>
@@ -106,6 +122,12 @@ function ViewTeachersComponent() {
                 </select>
               </div>
 
+              {error && (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
+
               <div className="text-center">
                 <input
                   type="button"
@@ -115,34 +137,33 @@ function ViewTeachersComponent() {
                 />
               </div>
 
-             
-              {classteachers.length > 0 && (
+              {classTeachers.length > 0 && (
                 <div className="mt-4">
                   <h6>Teachers Details</h6>
-                 
                   <table className="table-bordered">
-            <thead>
-                <tr>
-                    <th>Subject Name</th>
-                    <th>Teacher Name</th>
-                    <th>Contact No</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                {classteachers.map((item, index) => (
-                    <tr key={index}>
-                        <td>{item.sub_id.sub_name}   </td>
-                        <td>{item.tid.fname}  {item.tid.lname}</td> 
-                        <td>{item.tid.contact_no}  </td>
-                        <td>{item.tid.email}   </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+                    <thead>
+                      <tr>
+                        <th>Subject Name</th>
+                        <th>Teacher Name</th>
+                        <th>Contact No</th>
+                        <th>Email</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {classTeachers.map((item, index) => (
+                        <tr key={index}>
+                          <td>{item.sub_id.sub_name}</td>
+                          <td>
+                            {item.tid.fname} {item.tid.lname}
+                          </td>
+                          <td>{item.tid.contact_no}</td>
+                          <td>{item.tid.email}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               )}
-              
             </div>
           </div>
         </div>
