@@ -30,9 +30,6 @@ function TeacherComponent(){
             <nav className='navbar navbar-expand-sm bg-light mb-3'>
                 <div className='container-fluid'>
                     <ul className='navbar-nav'>
-                        <li className='nav-item'>
-                            <NavLink to="viewMarks" className='"nav-link px-3'>View Marks</NavLink>
-                        </li>
 
                         <li className='nav-item'>
                             <NavLink to="addMarks" className='"nav-link px-3'>Add Marks</NavLink>
