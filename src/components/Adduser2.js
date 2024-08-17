@@ -17,6 +17,7 @@ const AddUser2 = () => {
     const [Roles, setRoles] = useState([]);
     const [Areas, setAreas] = useState([]);
     const [cities, setCities] = useState([]);
+    const [successmsg,setsuccessmsg]=useState('');
 
     useEffect(() => {
         fetchRids();
@@ -94,7 +95,12 @@ const AddUser2 = () => {
                 if (!response.ok) throw new Error('Network response was not ok');
 
                 const result = await response.json();
-                console.log('Form submitted successfully:', result);
+                if(result)
+                {
+                    setsuccessmsg("User Registered successfully");
+                }
+
+                console.log('User Registered successfully:', result);
                 handleReset(); // Optionally reset form after successful submission
             } catch (error) {
                 console.error('Error submitting form:', error);
@@ -359,9 +365,11 @@ const AddUser2 = () => {
                 </button>
             </form>
             <br />
-            <p><strong>Form Data:</strong> {JSON.stringify({
+            {/* <p><strong>Form Data:</strong> {JSON.stringify({
                 Username, Password, Fname, Lname, Address, ContactNo, Email, Rid, Areaid, Status
-            })}</p>
+            })}</p> */}
+
+            <p>{successmsg}</p>
         </div>
     </div>
 </div>

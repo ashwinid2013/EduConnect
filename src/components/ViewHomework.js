@@ -7,9 +7,9 @@ function ViewhomeworkComponent() {
   const [students, setStudents] = useState([]);
   const [selectedStudentId, setSelectedStudentId] = useState(null);
   const [studentDetails, setStudentDetails] = useState(null);
-  const [classDetails, setclassData] = useState();
-  const [homework, sethomeworks] = useState([]); 
-
+  const [classDetails, setClassData] = useState(null);
+  const [homework, setHomeworks] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (parentid) {
@@ -30,7 +30,6 @@ function ViewhomeworkComponent() {
     }
   }, [parentid]);
 
-  
   useEffect(() => {
     if (selectedStudentId) {
       fetch(`http://localhost:8080/getStudentById/${selectedStudentId}`)
@@ -41,34 +40,50 @@ function ViewhomeworkComponent() {
         })
         .then((response) => response.json())
         .then((data) => {
-          setclassData(data);
+          setClassData(data);
         })
         .catch((error) => {
           console.error("Error fetching additional data:", error);
-          setclassData(null);
+          setClassData(null);
         });
     }
   }, [selectedStudentId]);
 
-  const handleViewhomeworks = () => {
-    const std = classDetails.std_id;
-    if (std) {
-      fetch(`http://localhost:8080/ViewHomeworksByStandard/${std}`)
-        .then((response) => response.json())
-        .then((data) => {
-          sethomeworks(data);
-        })
-        .catch((error) => {
-          console.error("Error fetching homework", error);
-          sethomeworks([]);
-        });
+  const handleViewHomeworks = () => {
+    if (!selectedStudentId) {
+      setError("Please select a student first.");
+      return;
     }
+
+    if (!classDetails || !classDetails.std_id) {
+      setError("Class details are not available for the selected student.");
+      return;
+    }
+
+    setError(null);
+    const std = classDetails.std_id;
+    fetch(`http://localhost:8080/ViewHomeworksByStandard/${std}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setHomeworks(data);
+        } else {
+          setHomeworks([]);
+          setError("No homework found for the selected class.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching homework:", error);
+        setHomeworks([]);
+        setError("Error fetching homework. Please try again later.");
+      });
   };
 
-  
   const handleSelectChange = (e) => {
     const selectedId = parseInt(e.target.value, 10);
     setSelectedStudentId(selectedId);
+    setHomeworks([]); // Clear previous homework list
+    setError(null); // Clear previous errors
   };
 
   const formatDate = (dateString) => {
@@ -93,8 +108,9 @@ function ViewhomeworkComponent() {
                     backgroundColor: '#f5f5f5',
                   }}
                   onChange={handleSelectChange}
+                  value={selectedStudentId || ""}
                 >
-                  <option>Select Student</option>
+                  <option value="">Select Student</option>
                   {students.length > 0 ? (
                     students.map((student) => (
                       <option key={student.sid} value={student.sid}>
@@ -107,19 +123,24 @@ function ViewhomeworkComponent() {
                 </select>
               </div>
 
+              {error && (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
+
               <div className="text-center">
                 <input
                   type="button"
-                  value="View HomeWork"
+                  value="View Homework"
                   className="btn btn-primary btn-lg"
-                  onClick={handleViewhomeworks}
+                  onClick={handleViewHomeworks}
                 />
               </div>
 
               {homework.length > 0 && (
                 <div className="mt-4">
                   <h6>Homework Details</h6>
-                 
                   <table className="table-bordered">
                     <thead>
                       <tr>
