@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
-export default function AddMarks() {
+export default function ViewMarksTeacher() {
     const [years, setYears] = useState([]);
     const [selectedYear, setSelectedYear] = useState('');
     const [examTypes, setExamTypes] = useState([]);
     const [teacherSubjectList, setTeacherSubjectList] = useState([]);
     const [subjects, setSubjects] = useState([]);
     const [students, setStudents] = useState([]);
-    const [StudentDetails, setStudentDetails] = useState([]);
+    const [studentDetails, setStudentDetails] = useState([]);
     const [selectedExamType, setSelectedExamType] = useState('');
     const [selectedStandard, setSelectedStandard] = useState('');
     const [selectedSubject, setSelectedSubject] = useState('');
-    const [selectedStudent, setSelectedStudent] = useState('');
-    const [marks, setMarks] = useState('');
-    const [message, setMessage] = useState('');
-    const [comment, setComment] = useState('');
+    const [marks, setMarks] = useState([]);
+    const [error, setError] = useState('');
+    const [noMarksAvailable, setNoMarksAvailable] = useState(false); // New state for no marks message
     const TeacherProfile = JSON.parse(localStorage.getItem("loggedUser"));
     const tid = TeacherProfile.username.uid;
 
@@ -40,7 +39,14 @@ export default function AddMarks() {
     useEffect(() => {
         fetch(`http://localhost:8080/getClassTeachersByTeacherId/${tid}`)
             .then(response => response.json())
-            .then(data => setTeacherSubjectList(Array.isArray(data) ? data : []))
+            .then(data => {
+                if (Array.isArray(data)) {
+                    setTeacherSubjectList(data);
+                } else {
+                    console.error('Unexpected API response, expected an array:', data);
+                    setTeacherSubjectList([]);
+                }
+            })
             .catch(error => {
                 console.error('Error fetching teacher subject list:', error);
                 setTeacherSubjectList([]);
@@ -95,65 +101,57 @@ export default function AddMarks() {
         if (selectedStandard) {
             fetch(`http://localhost:8080/getSubjectsByTeacherandStandard/${tid}/${selectedStandard}`)
                 .then(response => response.json())
-                .then(data => setSubjects(Array.isArray(data) ? data : []))
+                .then(data => {
+                    if (Array.isArray(data)) {
+                        setSubjects(data);
+                    } else {
+                        console.error('Unexpected API response, expected an array:', data);
+                        setSubjects([]);
+                    }
+                })
                 .catch(error => {
                     console.error('Error fetching subjects:', error);
                     setSubjects([]);
                 });
-        } else {
-            setSubjects([]);
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validation
-        if (!selectedYear || !selectedExamType || !selectedStandard || !selectedSubject || !selectedStudent || !marks) {
-            setMessage('Please fill out all fields before submitting.');
+        // Validation logic
+        if (!selectedYear || !selectedExamType || !selectedStandard || !selectedSubject) {
+            setError('Please fill in all the required fields.');
+            setMarks([]);
+            setNoMarksAvailable(false); // Reset no marks message
             return;
         }
 
-        const formData = {
-            tid: tid,
-            stdid: selectedStandard,
-            yearid: selectedYear,
-            typeid: selectedExamType,
-            subid: selectedSubject,
-            studid: selectedStudent,
-            comment: comment,
-            marks: marks,
-        };
+        const url = `http://localhost:8080/viewMarksByTeacherID/${selectedYear}/${selectedExamType}/${selectedStandard}/${tid}/${selectedSubject}`;
 
-        fetch('http://localhost:8080/addMarks', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data) {
-                    setMessage('Marks assigned successfully!');
-                    setSelectedYear('');
-                    setSelectedExamType('');
-                    setSelectedStandard('');
-                    setSelectedSubject('');
-                    setSelectedStudent('');
-                    setMarks('');
-                    setComment('');
-                }
-            })
-            .catch(error => {
-                console.error('Error saving marks:', error);
-                setMessage('Failed to assign marks. Please try again.');
-            });
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (Array.isArray(data) && data.length > 0) {
+                setMarks(data);
+                setError('');
+                setNoMarksAvailable(false); // Reset no marks message
+            } else {
+                console.error('Unexpected API response, expected a non-empty array:', data);
+                setMarks([]);
+                setNoMarksAvailable(true); // Show no marks message
+            }
+        } catch (error) {
+            console.error('Error fetching marks:', error);
+            setMarks([]);
+            setNoMarksAvailable(false); // Reset no marks message
+            setError('Error fetching marks.');
+        }
     };
 
     return (
         <div className="container mt-4">
-            {message && <div className="alert alert-info">{message}</div>}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Select Year:</label>
@@ -220,50 +218,51 @@ export default function AddMarks() {
                     </select>
                 </div>
 
-                <div className="form-group" style={{ paddingTop: 20 }}>
-                    <label htmlFor="studentSelect">Select Student:</label>
-                    <select
-                        id="studentSelect"
-                        className="form-select form-control"
-                        value={selectedStudent}
-                        onChange={(e) => setSelectedStudent(e.target.value)}
-                    >
-                        <option value="">Select Student</option>
-                        {StudentDetails.map((student) => (
-                            <option key={student.sid} value={student.sid}>
-                                {student.fname} {student.lname}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="form-group" style={{ paddingTop: 20 }}>
-                    <label htmlFor="marksInput">Enter Marks:</label>
-                    <input
-                        type="text"
-                        id="marksInput"
-                        className="form-control"
-                        value={marks}
-                        onChange={(e) => setMarks(e.target.value)}
-                        placeholder="Enter Marks"
-                    />
-                </div>
-
-                <div className="form-group" style={{ paddingTop: 20 }}>
-                    <label htmlFor="marksComment">Enter Comment:</label>
-                    <input
-                        type="text"
-                        id="marksComment"
-                        className="form-control"
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                        placeholder="Enter Comment"
-                    />
-                </div>
-
                 <div style={{ paddingTop: 20 }}></div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">View Marks</button>
             </form>
+
+            {error && (
+                <div className="mt-4">
+                    <p style={{ color: 'red' }}>{error}</p>
+                </div>
+            )}
+
+            {marks.length > 0 && (
+                <div className="mt-4">
+                    <h4>Marks Details</h4>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sr.No</th>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Subject</th>
+                                <th>Obtained Marks</th>
+                                <th>Out of Marks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {marks.map((mark, index) => (
+                                <tr key={mark.stud_id.sid}>
+                                    <td>{index + 1}</td>
+                                    <td>{mark.stud_id.sid}</td>
+                                    <td>{mark.stud_id.fname} {mark.stud_id.lname}</td>
+                                    <td>{mark.sub_id.sub_name}</td>
+                                    <td>{mark.obtainedmarks}</td>
+                                    <td>{mark.type_id.marks}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
+
+            {noMarksAvailable && (
+                <div className="mt-4">
+                    <p>Marks Not Available</p>
+                </div>
+            )}
         </div>
     );
 }
