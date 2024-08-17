@@ -18,6 +18,8 @@ import AssignTeacher from './components/AssignTeacher';
 import ViewTeachersComponent from './components/ViewTeachers';
 import UploadHomework from './components/UploadHomeWork';
 import ViewHomeworkComponent from './components/ViewHomework';
+import AddMarks from './components/AddMarks';
+import ViewMarksParentComponent from './components/ViewMarksParent';
 
 function App() {
   const mystate = useSelector((state) => state.logged);
@@ -26,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-       <header className="app-header bg-primary text-white p-3 d-flex justify-content-between align-items-center">
+        <header className="app-header bg-primary text-white p-3 d-flex justify-content-between align-items-center">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1gwaIP7z8rY_XxsMkCd991jeKdmDJmPJ2cq2MvAa40jGQH-CZDBUwfKvffPVJYIXlO0o&usqp=CAU" width={100} height={100} alt='logo' />
         {!mystate.loggedIn && (
           <nav className='d-flex'>
@@ -65,19 +67,21 @@ function App() {
 
         <Route path="/Teacher_home" element={<TeacherComponent />} >
         <Route path="AddHomework" element={<UploadHomework/>}/>
+        <Route path="addMarks" element={<AddMarks/>}/>
         </Route>
 
         <Route path="/Parent_home" element={<ParentComponent />} >
           <Route path="viewChild" element={<ViewChildComponent/>}/>
           <Route path="viewTeachers" element={<ViewTeachersComponent/>}/>
           <Route path="viewHomework" element={<ViewHomeworkComponent/>}/>
-
+          
+          {/* <Route path="viewChildMarks" element={<ViewMarksParentComponent/>}/> */}
+     
         </Route>
         
         <Route path="/logout" element={<LogoutComp />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes> 
-          
       
     </div>
   );

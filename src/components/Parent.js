@@ -30,9 +30,9 @@ function ParentComponent(){
                             <Link to="viewChild" className='"nav-link px-3'>View Child</Link>
                         </li>
                     
-                        <li className='nav-item'>
-                            <Link to="viewMarks" className='"nav-link px-3'>View Marks</Link>
-                        </li>
+                        {/* <li className='nav-item'>
+                            <Link to="viewChildMarks" className='"nav-link px-3'>View Marks</Link>
+                        </li> */}
                     
                         <li className='nav-item'>
                             <Link to="viewHomework" className='"nav-link px-3'>View Homework</Link>
