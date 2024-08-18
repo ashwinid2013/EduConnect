@@ -141,24 +141,24 @@ function ViewhomeworkComponent() {
               {homework.length > 0 && (
                 <div className="mt-4">
                   <h6>Homework Details</h6>
-                  <table className="table-bordered">
+                  <table className="table-bordered center" style={{ margin: "0 auto" }}>
                     <thead>
                       <tr>
-                        <th>Subject Name</th>
-                        <th>Homework Description</th>
-                        <th>Teacher Name</th>
-                        <th>Assign Date</th>
-                        <th>Submission Date</th>
+                        <th style={{ padding: "10px" }}>Subject Name</th>
+                        <th style={{ padding: "10px" }}>Homework Description</th>
+                        <th style={{ padding: "10px" }}>Teacher Name</th>
+                        <th style={{ padding: "10px" }}>Assign Date</th>
+                        <th style={{ padding: "10px" }}>Submission Date</th>
                       </tr>
                     </thead>
                     <tbody>
                       {homework.map((item, index) => (
                         <tr key={index}>
-                          <td>{item.sub_id.sub_name}</td>
-                          <td>{item.description}</td>
-                          <td>{item.tid.fname} {item.tid.lname}</td>
-                          <td>{formatDate(item.assign_date)}</td>
-                          <td>{formatDate(item.submission_date)}</td>
+                          <td style={{ padding: "10px" }}>{item.sub_id.sub_name}</td>
+                          <td style={{ padding: "10px" }}>{item.description}</td>
+                          <td style={{ padding: "10px" }}>{item.tid.fname} {item.tid.lname}</td>
+                          <td style={{ padding: "10px" }}>{formatDate(item.assign_date)}</td>
+                          <td style={{ padding: "10px" }}>{formatDate(item.submission_date)}</td>
                         </tr>
                       ))}
                     </tbody>
