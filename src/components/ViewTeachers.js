@@ -92,7 +92,7 @@ function ViewTeachersComponent() {
 
   return (
     <div className="container mt-5">
-      <div className="row justify-content-center mb-4">
+      <div className="row justify-content-center"> 
         <div className="col-md-12">
           <div className="card shadow-lg">
             <div className="card-body">
@@ -138,30 +138,32 @@ function ViewTeachersComponent() {
               </div>
 
               {classTeachers.length > 0 && (
-                <div className="mt-4">
-                  <h6>Teachers Details</h6>
-                  <table className="table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Subject Name</th>
-                        <th>Teacher Name</th>
-                        <th>Contact No</th>
-                        <th>Email</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {classTeachers.map((item, index) => (
-                        <tr key={index}>
-                          <td>{item.sub_id.sub_name}</td>
-                          <td>
-                            {item.tid.fname} {item.tid.lname}
-                          </td>
-                          <td>{item.tid.contact_no}</td>
-                          <td>{item.tid.email}</td>
+                <div className="d-flex justify-content-center mt-4">
+                  <div>
+                    <h6 className="text-center">Teachers Details</h6>
+                    <table className="table-bordered center" style={{ margin: "0 auto" }}>
+                      <thead>
+                        <tr>
+                        <th style={{ padding: "10px" }}>Subject Name</th>
+                          <th style={{ padding: "10px" }}>Teacher Name</th>
+                          <th style={{ padding: "10px" }}>Email</th>
+                          
+                          {/* <th>Contact No</th> */}
+                         
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {classTeachers.map((item, index) => (
+                          <tr key={index}>
+                            <td style={{ padding: "10px" }}>{item.sub_id.sub_name}</td>
+                            <td style={{ padding: "10px" }}>{item.tid.fname}{item.tid.lname} </td>
+                            {/* <td>{item.tid.contact_no}</td> */}
+                            <td style={{ padding: "10px" }}>{item.tid.email}  </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               )}
             </div>
