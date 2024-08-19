@@ -26,15 +26,20 @@ import ViewMarksTeacher from './components/ViewMarksTeacher';
 function App() {
   const mystate = useSelector((state) => state.logged);
 
-
+  const backgroundImageStyle = {
+    backgroundImage: `url("https://img.pikbest.com/backgrounds/20220119/parents-meeting-2c-blue-cartoon-background-of-teaching-building_6245809.jpg!sw800")`, // Update with the correct path
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    minHeight: '90vh',
+  };
 
   return (
-    <div className="App">
+    <div className="App" >
       <header className="app-header bg-primary text-white p-3 d-flex justify-content-between align-items-center">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1gwaIP7z8rY_XxsMkCd991jeKdmDJmPJ2cq2MvAa40jGQH-CZDBUwfKvffPVJYIXlO0o&usqp=CAU" width={100} height={100} alt='logo' />
         {!mystate.loggedIn && (
-          <nav className='d-flex'>
-            <ul className='navbar-nav flex-row'>
+          <nav className='d-flex' >
+            <ul className='navbar-nav flex-row' >
 
               <li className='nav-item'>
                 <NavLink to="/" className="nav-link px-3" activeclassname="active">Home</NavLink>
@@ -51,11 +56,11 @@ function App() {
           </nav>
         )}
       </header>
-
+          <div   style={backgroundImageStyle}>
 
       <Routes>
         <Route path="/" element={<HomeComponent />} />
-
+      
         <Route path="/login" element={<LoginComponent />} />
 
         <Route path="/Admin_home" element={<AdminComponent />}>
@@ -86,17 +91,26 @@ function App() {
         <Route path="/logout" element={<LogoutComp />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
-
+      </div>
     </div>
   );
 }
 
 
+
 function HomeComponent() {
 
-  return (<div>
-    <h1 className=' text-blue text-center'>Welcome to the EduConnect</h1>
+  return ( <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '60vh',
+    }}
+  >
+    <h1 className="text-blue text-center">Welcome to EduConnect</h1>
   </div>);
+  
 }
 
 export default App;

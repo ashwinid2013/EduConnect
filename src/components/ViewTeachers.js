@@ -95,6 +95,7 @@ function ViewTeachersComponent() {
       <div className="row justify-content-center"> 
         <div className="col-md-12">
           <div className="card shadow-lg">
+          <h4>View Teachers</h4>
             <div className="card-body">
               <h6>Select Your Child</h6>
               <div className="mb-4">

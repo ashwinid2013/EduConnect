@@ -153,6 +153,7 @@ export default function ViewMarksTeacher() {
     return (
         <div className="container mt-4">
             <form onSubmit={handleSubmit}>
+                <h4>View Marks</h4>
                 <div className="form-group">
                     <label>Select Year:</label>
                     <select

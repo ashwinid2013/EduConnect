@@ -96,6 +96,7 @@ function ViewhomeworkComponent() {
       <div className="row justify-content-center mb-4">
         <div className="col-md-12">
           <div className="card shadow-lg">
+          <h4>View Homework</h4>
             <div className="card-body">
               <h6>Select Your Child</h6>
               <div className="mb-4">

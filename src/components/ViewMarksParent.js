@@ -116,6 +116,7 @@ function ViewChildComponent() {
       <div className="row justify-content-center">
         <div className="col-md-8">
           <div className="card shadow-lg">
+          <h4>View Marks</h4>
             <div className="card-body p-4">
               <h6>Select Your Child</h6>
               <div className="mb-4">
