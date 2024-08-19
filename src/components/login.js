@@ -91,7 +91,7 @@ function LoginComponent() {
 
   return (
     <div>
-      <h1>Login Form</h1>
+      <h1>Login Page</h1>
       <form className="container">
         <div className="mb-3">
           <label htmlFor="uid" className="form-label">Username: </label>

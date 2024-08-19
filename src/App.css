@@ -6,10 +6,10 @@
 
 /* Header styling */
 .app-header {
-  background-color: #007bff; /* Bootstrap primary color */
+  background-color: #1868b8; /* Bootstrap primary color */
   color: black; /* Set header text color to black */
   padding: 10px;
-  border-bottom: 1px solid #e0e0e0;
+  /* border-bottom: 1px solid #e0e0e0; */
   display: flex;
   align-items: center;
 }

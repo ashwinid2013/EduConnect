@@ -155,6 +155,7 @@ export default function AddMarks() {
         <div className="container mt-4">
             {message && <div className="alert alert-info">{message}</div>}
             <form onSubmit={handleSubmit}>
+                <h4>Add Marks</h4>
                 <div className="form-group">
                     <label>Select Year:</label>
                     <select
