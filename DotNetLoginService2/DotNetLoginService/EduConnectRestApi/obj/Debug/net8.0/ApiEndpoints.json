@@ -63,6 +63,32 @@
   },
   {
     "ContainingType": "EduConnectRestApi.Controllers.UserManagementController",
+    "Method": "GetCityByAreaIdAsync",
+    "RelativePath": "api/UserManagement/GetCityByAreaId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "areaId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EduConnectRestApi.Models.City",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EduConnectRestApi.Controllers.UserManagementController",
     "Method": "GetLog",
     "RelativePath": "api/UserManagement/GetLog",
     "HttpMethod": "GET",
@@ -155,6 +181,32 @@
   },
   {
     "ContainingType": "EduConnectRestApi.Controllers.UserManagementController",
+    "Method": "SaveSubject",
+    "RelativePath": "api/UserManagement/SaveSubject",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subject",
+        "Type": "EduConnectRestApi.Models.Subject",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EduConnectRestApi.Models.Subject",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EduConnectRestApi.Controllers.UserManagementController",
     "Method": "SaveUser",
     "RelativePath": "api/UserManagement/SaveUser",
     "HttpMethod": "POST",
@@ -178,5 +230,21 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "EduConnectRestApi.Controllers.UserManagementController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/UserManagement/UpdateUser",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "EduConnectRestApi.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

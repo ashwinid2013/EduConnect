@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\DotNetLoginService",
+    "\\DotNetLoginService\\EduConnectRestApi",
+    "\\DotNetLoginService\\EduConnectRestApi\\Controllers",
+    "\\DotNetLoginService\\EduConnectRestApi\\Models",
+    "\\DotNetLoginService\\EduConnectRestApi\\Properties"
+  ],
+  "SelectedNode": "\\DotNetLoginService\\EduConnectRestApi\\Models\\educonnectdbContext.cs",
+  "PreviewInSolutionExplorer": false
+}

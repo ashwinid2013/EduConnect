@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CDAC\\projects\\EduConnect\\DotNetLoginService\\EduConnectRestApi\\EduConnectRestApi.csproj": {}
+    "E:\\know-it\\DAC project\\DACProject\\DotNetLoginService2\\DotNetLoginService\\EduConnectRestApi\\EduConnectRestApi.csproj": {}
   },
   "projects": {
-    "D:\\CDAC\\projects\\EduConnect\\DotNetLoginService\\EduConnectRestApi\\EduConnectRestApi.csproj": {
+    "E:\\know-it\\DAC project\\DACProject\\DotNetLoginService2\\DotNetLoginService\\EduConnectRestApi\\EduConnectRestApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CDAC\\projects\\EduConnect\\DotNetLoginService\\EduConnectRestApi\\EduConnectRestApi.csproj",
+        "projectUniqueName": "E:\\know-it\\DAC project\\DACProject\\DotNetLoginService2\\DotNetLoginService\\EduConnectRestApi\\EduConnectRestApi.csproj",
         "projectName": "EduConnectRestApi",
-        "projectPath": "D:\\CDAC\\projects\\EduConnect\\DotNetLoginService\\EduConnectRestApi\\EduConnectRestApi.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\CDAC\\projects\\EduConnect\\DotNetLoginService\\EduConnectRestApi\\obj\\",
+        "projectPath": "E:\\know-it\\DAC project\\DACProject\\DotNetLoginService2\\DotNetLoginService\\EduConnectRestApi\\EduConnectRestApi.csproj",
+        "packagesPath": "C:\\Users\\TB\\.nuget\\packages\\",
+        "outputPath": "E:\\know-it\\DAC project\\DACProject\\DotNetLoginService2\\DotNetLoginService\\EduConnectRestApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\TB\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -98,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
